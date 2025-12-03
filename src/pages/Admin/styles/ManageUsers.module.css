@@ -1,0 +1,31 @@
+.manage_users_container {
+    padding: 20px;
+  }
+  
+  .users_table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .users_table th, .users_table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  .users_table th {
+    background-color: #f2f2f2;
+    text-align: left;
+  }
+  
+  .delete_button {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  
+  .delete_button:hover {
+    background-color: #d32f2f;
+  }

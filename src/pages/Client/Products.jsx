@@ -1,9 +1,9 @@
 import React from 'react'
-import styles from "./Products.module.css"
+import styles from "./styles/Products.module.css"
 import {productsData} from "../../configs/ecommerce";
 import Slider from '@mui/material/Slider';
 import { HiOutlineChevronRight } from "react-icons/hi";
-import ProductCard from '../ProductCard/ProductCard';
+import ProductCard from '../../components/ProductCard';
 
 
 function valuetext(value) {

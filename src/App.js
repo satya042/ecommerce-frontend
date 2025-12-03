@@ -1,18 +1,23 @@
-import './App.css';
-import { Home } from './components/Home/Home';
-import Navbar from './components/Navbar/Navbar';
-import Footer from './components/Footer/Footer'
-import ProductDetils from './components/ProductDetails/ProductDetails';
-import Products from './components/Products/Products';
+import "./App.css";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Products from "./pages/Client/Products";
+import Home from "./pages/Client/Home";
+import Footer from "./components/Footer";
+import ProductDetails from "./pages/Client/ProductDetails";
+import Navbar from "./components/Navbar";
+import AdminDashboard from "./pages/Admin/AdminDashboard";
 
 function App() {
   return (
-    <div className="">
-      <Navbar/>
-      {/* <Home/> */}
-      {/* <Products/> */}
-      {/* <ProductDetils/> */}
-      <Footer/>
+    <div className="app">
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/products" element={<Products />} />
+        <Route path="/products/:id" element={<ProductDetails />} />
+      </Routes>
+      <Footer />
+      {/* <AdminDashboard/> */}
     </div>
   );
 }

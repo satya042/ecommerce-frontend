@@ -1,4 +1,35 @@
-.product_card {
+.featureCard {
+    background-color: #333;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    width: 40vh;
+  }
+  
+  .icon {
+    width: 50px;
+    height: 50px;
+    margin: 0 auto 10px;
+  }
+  
+  .icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  
+  .featureCard h3 {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+  }
+  
+  .featureCard p {
+    font-size: 0.9rem;
+  }
+  
+
+  /* productCard styles */
+  .product_card {
     text-align: center;
     width: 300px;
   }

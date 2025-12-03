@@ -1,24 +1,12 @@
 import React from 'react'
-import styles from './ProductDetails.module.css';
+import styles from './styles/ProductDetails.module.css';
 import { Link} from 'react-router-dom';
 import product_image from '../../assets/products/sanitizer-400x400.jpg';
-
-import ProductCard from '../ProductCard/ProductCard';
-import { bsetSellingproducts } from '../../configs/ecommerce';
+import ProductCard from '../../components/ProductCard';
+import { bestSellingproducts } from '../../configs/ecommerce';
 
 
 const ProductDetils = () => {
-  
-  // const FeatureCard = ({ icon, title, description }) => {
-  //   return (
-  //     <div className={styles.feature_card}>
-  //       <div className={styles.icon}>{icon}</div>
-  //       <h3>{title}</h3>
-  //       <p>{description}</p>
-  //     </div>
-  //   );
-  // };
-
   return (
     <div className={styles.home_container}>
     <div className={styles.home_section}>
@@ -41,7 +29,7 @@ const ProductDetils = () => {
     <div className={styles.best_selling_products}>
     <h2>Related products</h2>
     <div className={styles.products}>
-      {bsetSellingproducts.map((product) => (
+      {bestSellingproducts.map((product) => (
         <ProductCard key={product.title} {...product} />
       ))}
     </div>

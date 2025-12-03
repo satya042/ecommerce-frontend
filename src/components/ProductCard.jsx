@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from "./ProductCard.module.css"
+import styles from "./styles/styles.module.css"
 
 const ProductCard = ({ image, title, category, price, rating, salePrice }) => {
   return (
@@ -9,10 +9,7 @@ const ProductCard = ({ image, title, category, price, rating, salePrice }) => {
     <h3>{title}</h3>
     <div className={styles.rating}>
       {Array(5).fill(null).map((_, i) => (
-        <span key={i} className={styles.star}>
-          ★
-        </span>
-      ))}
+        <span key={i} className={styles.star}>★</span>))}
     </div>
     <p className={styles.price}>
       {salePrice ? (

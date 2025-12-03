@@ -1,13 +1,13 @@
 import React from "react";
-import styles from "./Navbar.module.css";
 import { Link } from "react-router-dom";
-import logo from "../../assets/logos/organic-store-logo5.svg";
+import styles from "./styles/Navbar.module.css";
+import logo from "../assets/logos/organic-store-logo5.svg";
 import { HiOutlineShoppingCart , HiUser} from "react-icons/hi";
 
 
-export default function Navbar() {
+const Navbar = () => {
   return (
-    <div className={styles.nav_container}>
+      <div className={styles.nav_container}>
       <header className={styles.nav_header}>
         <nav aria-label="Top" className={styles.custom_nav}>
           <div className={styles.nav_items}>
@@ -39,4 +39,6 @@ export default function Navbar() {
       </header>
     </div>
   );
-}
+};
+
+export default Navbar;
