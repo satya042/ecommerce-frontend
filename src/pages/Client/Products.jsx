@@ -1,54 +1,243 @@
-import React from 'react'
-import styles from "./styles/Products.module.css"
-import {productsData} from "../../configs/ecommerce";
-import Slider from '@mui/material/Slider';
+import React, { useEffect, useMemo, useState } from "react";
+import styles from "./styles/Products.module.css";
+import { productsData } from "../../configs/ecommerce";
+import Slider from "@mui/material/Slider";
 import { HiOutlineChevronRight } from "react-icons/hi";
-import ProductCard from '../../components/ProductCard';
+import ProductCard from "../../components/ProductCard";
+import { debounce } from "../../utils/debounce";
+import SkeletonProductCard from "../../components/SkeletonProductCard";
 
+const SEARCH_STORAGE_KEY = "ecom_search_history";
 
-function valuetext(value) {
-  return `${value}°C`;
-}
+const loadHistory = () => {
+  try {
+    const raw = localStorage.getItem(SEARCH_STORAGE_KEY);
+    return raw ? JSON.parse(raw) : [];
+  } catch {
+    return [];
+  }
+};
+
+const saveHistory = (items) => {
+  try {
+    localStorage.setItem(SEARCH_STORAGE_KEY, JSON.stringify(items.slice(0, 5)));
+  } catch {
+    // ignore
+  }
+};
 
 const Products = () => {
-  const [value, setValue] = React.useState([20, 37]);
+  const [priceRange, setPriceRange] = useState([0, 40]);
+  const [query, setQuery] = useState("");
+  const [activeQuery, setActiveQuery] = useState("");
+  const [category, setCategory] = useState("all");
+  const [sort, setSort] = useState("latest");
+  const [history, setHistory] = useState([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const [loading, setLoading] = useState(true);
 
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
+  useEffect(() => {
+    setHistory(loadHistory());
+    const id = setTimeout(() => setLoading(false), 400);
+    return () => clearTimeout(id);
+  }, []);
+
+  const debouncedSetActiveQuery = useMemo(
+    () =>
+      debounce((value) => {
+        setActiveQuery(value.trim().toLowerCase());
+        if (value.trim()) {
+          setHistory((prev) => {
+            const next = [value.trim(), ...prev.filter((h) => h !== value.trim())];
+            saveHistory(next);
+            return next;
+          });
+        }
+      }, 300),
+    []
+  );
+
+  const handleSearchChange = (e) => {
+    const value = e.target.value;
+    setQuery(value);
+    debouncedSetActiveQuery(value);
+    setShowSuggestions(true);
   };
+
+  const categories = useMemo(() => {
+    const unique = new Set(productsData.map((p) => p.category));
+    return ["all", ...Array.from(unique)];
+  }, []);
+
+  const suggestions = useMemo(() => {
+    if (!query) return [];
+    const lower = query.toLowerCase();
+    return productsData
+      .filter((p) => p.title.toLowerCase().includes(lower))
+      .slice(0, 5);
+  }, [query]);
+
+  const filteredProducts = useMemo(() => {
+    let result = [...productsData];
+
+    if (category !== "all") {
+      result = result.filter((p) => p.category === category);
+    }
+
+    if (activeQuery) {
+      const q = activeQuery.toLowerCase();
+      result = result.filter(
+        (p) =>
+          p.title.toLowerCase().includes(q) ||
+          p.brand.toLowerCase().includes(q) ||
+          p.category.toLowerCase().includes(q)
+      );
+    }
+
+    result = result.filter(
+      (p) => p.priceNumber >= priceRange[0] && p.priceNumber <= priceRange[1]
+    );
+
+    if (sort === "price-asc") {
+      result.sort((a, b) => a.priceNumber - b.priceNumber);
+    } else if (sort === "price-desc") {
+      result.sort((a, b) => b.priceNumber - a.priceNumber);
+    } else if (sort === "rating") {
+      result.sort((a, b) => (b.rating || 0) - (a.rating || 0));
+    }
+
+    return result;
+  }, [category, activeQuery, priceRange, sort]);
+
   return (
     <div className={styles.products_container}>
       <div className={styles.product_left}>
         <div className={styles.search_bar}>
-        <input type="search" placeholder="Search..." />
-        <button type="submit">
-        <HiOutlineChevronRight />
+          <input
+            type="search"
+            placeholder="Search products..."
+            value={query}
+            onChange={handleSearchChange}
+            onFocus={() => setShowSuggestions(true)}
+          />
+          <button type="button">
+            <HiOutlineChevronRight />
           </button>
         </div>
-        <div>
+        {showSuggestions && (suggestions.length > 0 || history.length > 0) && (
+          <div className={styles.search_suggestions}>
+            {suggestions.map((p) => (
+              <button
+                key={p.id}
+                type="button"
+                onClick={() => {
+                  setQuery(p.title);
+                  debouncedSetActiveQuery(p.title);
+                  setShowSuggestions(false);
+                }}
+              >
+                {p.title}
+              </button>
+            ))}
+            {history.length > 0 && (
+              <div className={styles.search_history}>
+                <div className={styles.search_history_label}>Recent searches</div>
+                {history.map((term) => (
+                  <button
+                    key={term}
+                    type="button"
+                    onClick={() => {
+                      setQuery(term);
+                      debouncedSetActiveQuery(term);
+                      setShowSuggestions(false);
+                    }}
+                  >
+                    {term}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+
+        <div style={{ marginTop: "1.5rem" }}>
+          <div style={{ marginBottom: "0.5rem", fontWeight: 600 }}>Price</div>
           <Slider
-            getAriaLabel={() => 'Temperature range'}
-            value={value}
-            onChange={handleChange}
+            value={priceRange}
+            onChange={(_, newValue) => setPriceRange(newValue)}
             valueLabelDisplay="auto"
-            getAriaValueText={valuetext}
+            min={0}
+            max={40}
           />
         </div>
-      </div>
-    <div className={styles.products_main}> 
-    <div>
-    <div className={styles.products__titl}>Everything</div>
-        <div className={styles.products_grid}>
-          <div className={styles.products_item}>
-            {productsData.map((product) => (
-              <ProductCard key={product.title} {...product} />
+
+        <div style={{ marginTop: "1.5rem" }}>
+          <div style={{ marginBottom: "0.5rem", fontWeight: 600 }}>Category</div>
+          <div style={{ display: "flex", flexDirection: "column", gap: "0.35rem" }}>
+            {categories.map((cat) => (
+              <label key={cat} style={{ cursor: "pointer", fontSize: "0.9rem" }}>
+                <input
+                  type="radio"
+                  name="category"
+                  value={cat}
+                  checked={category === cat}
+                  onChange={() => setCategory(cat)}
+                  style={{ marginRight: "0.35rem" }}
+                />
+                {cat === "all" ? "All" : cat}
+              </label>
             ))}
           </div>
         </div>
-    </div>
-  </div>
-  </div>
-  )
-}
 
-export default Products
+        <div style={{ marginTop: "1.5rem" }}>
+          <div style={{ marginBottom: "0.5rem", fontWeight: 600 }}>Sort by</div>
+          <select
+            value={sort}
+            onChange={(e) => setSort(e.target.value)}
+            style={{
+              padding: "0.35rem 0.5rem",
+              borderRadius: "0.375rem",
+              border: "1px solid #e5e7eb",
+            }}
+          >
+            <option value="latest">Latest</option>
+            <option value="price-asc">Price: Low to High</option>
+            <option value="price-desc">Price: High to Low</option>
+            <option value="rating">Rating</option>
+          </select>
+        </div>
+      </div>
+
+      <div className={styles.products_main}>
+        <div>
+          <div className={styles.products__titl}>Everything</div>
+          <div className={styles.products_grid}>
+            <div className={styles.products_item}>
+              {loading ? (
+                Array.from({ length: 6 }).map((_, i) => (
+                  <SkeletonProductCard key={i} />
+                ))
+              ) : filteredProducts.length === 0 ? (
+                <div style={{ textAlign: "center", width: "100%", padding: "3rem 1rem" }}>
+                  <p style={{ marginBottom: "0.5rem", fontWeight: 600 }}>
+                    No products match your filters.
+                  </p>
+                  <p style={{ fontSize: "0.9rem" }}>
+                    Try adjusting your search or price range.
+                  </p>
+                </div>
+              ) : (
+                filteredProducts.map((product) => (
+                  <ProductCard key={product.id} {...product} />
+                ))
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Products;

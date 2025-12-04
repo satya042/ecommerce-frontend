@@ -9,16 +9,16 @@
   justify-content: center;
   align-items: center;
   flex-direction: row;
-  height: 50vh;
+  height: 35vh;
   width: 100%;
   margin: 10rem 0rem;
 }
 
 .homeImage {
-  width: 634px;
+  width: 580px;
   max-width: 800px;
   border-radius: 10px;
-  height: 543px;
+  height: 480px;
 }
 
 .block_content {
@@ -37,17 +37,26 @@
 }
 
 .homeButton {
-  display: inline-block;
-  padding: 0.5rem 1.5rem;
+  display: inline-flex;
+  padding: 0.8rem 1.5rem;
   background-color: #679830;
   color: white;
   text-decoration: none;
   border-radius: 5px;
   transition: background-color 0.3s ease;
+  height: 45px;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .homeButton:hover {
   background-color: #82bb42;
+}
+.button_icon {
+  font-size: 1.25rem;
+}
+.button_text{
+  font-size: 14px;
 }
 
 .app {
@@ -55,7 +64,7 @@
   justify-content: center;
   align-items: center;
   min-height: 30vh;
-  background-color: #222;
+  background-color: #000000;
   color: #fff;
 }
 

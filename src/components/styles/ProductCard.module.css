@@ -7,17 +7,12 @@
   }
   
   .icon {
-    width: 50px;
-    height: 50px;
+    width: 35px;
+    height: 35px;
     margin: 0 auto 10px;
+    color: #82bb42;
   }
-  
-  .icon img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-  }
-  
+
   .featureCard h3 {
     font-size: 1.2rem;
     margin-bottom: 5px;
@@ -77,4 +72,30 @@
   
   .sale_price {
     color: #f00;
+  }
+
+  .product_actions {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-top: 0.75rem;
+  }
+
+  .product_actions button {
+    padding: 0.3rem 0.75rem;
+    border-radius: 4px;
+    border: 1px solid #e5e7eb;
+    background-color: #ffffff;
+    font-size: 0.8rem;
+  }
+
+  .product_actions button:first-child {
+    border-color: #679830;
+    color: #ffffff;
+    background-color: #679830;
+  }
+
+  .product_actions button:first-child:hover {
+    background-color: #82bb42;
+    border-color: #82bb42;
   }

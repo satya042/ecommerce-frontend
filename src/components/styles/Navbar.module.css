@@ -35,8 +35,73 @@
       align-items: center;
       flex-wrap: nowrap;
       gap: 30px;
-      font-size: 18px;
+      font-size: 1rem;
+      color: #333333;
   }
   .nav_links a:hover {
     color: #679830; 
   }
+
+  .cart_button {
+  position: relative;
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0 0.5rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  color: inherit;
+}
+
+/* icon size inside button */
+.cart_icon {
+  font-size: 1.6rem;
+  line-height: 1;
+  display: block;
+  color: inherit;
+}
+
+/* rounded badge positioned top-right of the icon */
+.cart_badge {
+  position: absolute;
+  top: -7px;
+  right: -9px;
+  background-color: #679830; /* main brand color */
+  color: #fff;
+  border-radius: 999px;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  font-size: 12px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 0 2px #fff; /* white ring to separate from icon */
+}
+
+/* small responsive tweak */
+@media (max-width: 480px) {
+  .cart_icon { font-size: 1.3rem; }
+  .cart_badge { min-width: 18px; height: 18px; font-size: 11px; top: -5px; right: -5px; }
+}
+
+/* Reusable icon button for user/profile */
+.icon_button {
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin-left: 0.5rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  color: inherit;
+}
+.price{
+  color: #679830;
+  font-weight: 700;
+}
+.user_icon {
+  font-size: 1.4rem;
+}

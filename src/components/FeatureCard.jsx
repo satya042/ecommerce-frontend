@@ -1,11 +1,11 @@
 import React from "react";
-import styles from "./styles/styles.module.css";
+import styles from "./styles/ProductCard.module.css";
 
-const FeatureCard = ({ icon, title, description }) => {
+const FeatureCard = ({ icon:Icon, title, description }) => {
   return (
     <div className={styles.featureCard}>
-      <div className={styles.icon}>
-        <img src={icon} alt={title} />
+     <div>
+        {Icon ? <Icon className={styles.icon} aria-hidden="true" /> : null}
       </div>
       <h3>{title}</h3>
       <p>{description}</p>

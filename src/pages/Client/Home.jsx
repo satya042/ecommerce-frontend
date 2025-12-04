@@ -7,7 +7,7 @@ import logo from "../../assets/logos/organic-store-logo5.svg";
 import ProductCard from "../../components/ProductCard";
 import FeatureCard from "../../components/FeatureCard";
 import { bestSellingproducts,features } from "../../configs/ecommerce";
-import { HiOutlineShoppingCart , HiUser} from "react-icons/hi";
+import { HiShoppingCart} from "react-icons/hi";
 
 
 const Home = () => {
@@ -23,7 +23,8 @@ const Home = () => {
             Discover the finest organic fruits, vegetables, and groceries.
           </p>
           <Link to="/products" className={styles.homeButton}>
-            Shop Now
+           <HiShoppingCart className={styles.button_icon} /> 
+           <span className={styles.button_text}>SHOP NOW</span>
           </Link>
         </div>
       </div>

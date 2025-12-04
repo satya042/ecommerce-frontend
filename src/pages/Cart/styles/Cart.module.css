@@ -1,0 +1,137 @@
+.cart_container {
+  padding: 2rem 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  min-height: 60vh;
+}
+
+.cart_title {
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+.cart_content {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 2rem;
+}
+
+.cart_items {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.cart_item {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  align-items: center;
+}
+
+.cart_item_image {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 0.25rem;
+}
+
+.cart_item_details {
+  flex: 1;
+}
+
+.cart_item_name {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.cart_item_price {
+  color: #679830;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.cart_item_quantity {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.quantity_button {
+  background-color: #f0f0f0;
+  border: none;
+  padding: 0.25rem 0.5rem;
+  cursor: pointer;
+  border-radius: 0.25rem;
+}
+
+.quantity_button:hover {
+  background-color: #e0e0e0;
+}
+
+.remove_button {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
+.remove_button:hover {
+  background-color: #d32f2f;
+}
+
+.cart_summary {
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  height: fit-content;
+}
+
+.summary_title {
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.summary_row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.summary_total {
+  border-top: 1px solid #e5e7eb;
+  padding-top: 0.5rem;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.checkout_button {
+  background-color: #679830;
+  color: white;
+  border: none;
+  padding: 0.75rem 1rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.checkout_button:hover {
+  background-color: #5a8228;
+}
+
+.empty_cart {
+  text-align: center;
+  padding: 2rem;
+}
+
+@media (max-width: 768px) {
+  .cart_content {
+    grid-template-columns: 1fr;
+  }
+}

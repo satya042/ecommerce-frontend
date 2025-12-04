@@ -113,12 +113,13 @@
   
   
     .search_bar {
+      position: relative;
       display: flex;
-      
       background-color: #fff;
       border: 1px solid #ddd;
       border-radius: 4px;
-   justify-content: space-between;
+      justify-content: space-between;
+      padding: 0 0.5rem;
     }
     
     .search_bar input[type="search"] {  
@@ -126,9 +127,10 @@
       border: none;
       outline: none;
       height: 35px;
+      flex: 1;
     }
     
-    .search_bar button[type="submit"] {
+    .search_bar button[type="button"] {
       background-color: #4CAF50;
       color: #fff;
       border: none;
@@ -136,24 +138,14 @@
       cursor: pointer;
       border-radius: 1px;
       margin-left: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     
-    .search-bar button[type="submit"]:hover {
+    .search-bar button[type="button"]:hover {
       background-color: #3e8e41;
       border-radius: 1px;
-    }
-    
-    .search-bar svg {
-      width: 24px;
-      height: 24px;
-      fill: #fff;
-    }
-    
-    .search-bar svg path {
-      stroke: #fff;
-      stroke-width: 2;
-      stroke-linecap: round;
-      stroke-linejoin: round;
     }
   
   
@@ -197,4 +189,41 @@
       justify-content: center;
       gap: 2rem;
       align-items: flex-start;
+    }
+
+    .search_suggestions {
+      margin-top: 0.5rem;
+      background-color: #ffffff;
+      border-radius: 0.375rem;
+      border: 1px solid #e5e7eb;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      padding: 0.5rem;
+    }
+
+    .search_suggestions button {
+      text-align: left;
+      border: none;
+      background: none;
+      font-size: 0.85rem;
+      padding: 0.25rem 0.35rem;
+      border-radius: 0.25rem;
+    }
+
+    .search_suggestions button:hover {
+      background-color: #f3f4f6;
+    }
+
+    .search_history {
+      border-top: 1px solid #e5e7eb;
+      margin-top: 0.25rem;
+      padding-top: 0.25rem;
+    }
+
+    .search_history_label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      color: #9ca3af;
+      margin-bottom: 0.25rem;
     }

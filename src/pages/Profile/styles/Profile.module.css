@@ -1,0 +1,105 @@
+.profile_container {
+  padding: 2rem 1.5rem;
+  max-width: 1000px;
+  margin: 0 auto;
+  min-height: 60vh;
+}
+
+.profile_title {
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+.profile_content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.profile_section {
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+}
+
+.section_title {
+  font-weight: 600;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.profile_info {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.info_row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.info_label {
+  font-weight: 500;
+  color: #6b7280;
+}
+
+.info_value {
+  font-weight: 600;
+}
+
+.edit_button {
+  background-color: #679830;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+.edit_button:hover {
+  background-color: #5a8228;
+}
+
+.logout_button {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+.logout_button:hover {
+  background-color: #d32f2f;
+}
+
+.quick_links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.quick_link {
+  color: #679830;
+  text-decoration: none;
+  padding: 0.75rem;
+  border-radius: 0.25rem;
+  transition: background-color 0.3s;
+}
+
+.quick_link:hover {
+  background-color: #f5f5f5;
+}
+
+@media (max-width: 768px) {
+  .profile_content {
+    grid-template-columns: 1fr;
+  }
+}

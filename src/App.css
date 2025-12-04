@@ -1,40 +1,65 @@
-.App {
-  text-align: center;
+:root {
+  --bg-color: #ffffff;
+  --text-color: #111827;
+  --card-bg: #ffffff;
+  --border-color: #e5e7eb;
+  --accent-color: #679830;
+  --accent-color-soft: #82bb42;
+  --muted-text: #6b7280;
+  --shadow-soft: 0 10px 15px rgba(0, 0, 0, 0.05);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+[data-theme="dark"] {
+  --bg-color: #020617;
+  --text-color: #e5e7eb;
+  --card-bg: #020617;
+  --border-color: #1f2937;
+  --accent-color: #82bb42;
+  --accent-color-soft: #a3e635;
+  --muted-text: #9ca3af;
+  --shadow-soft: 0 10px 15px rgba(0, 0, 0, 0.4);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
 }
 
-.App-header {
-  background-color: #282c34;
+.app {
   min-height: 100vh;
+  background-color: var(--bg-color);
+  color: var(--text-color);
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.app-main {
+  flex: 1;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.theme-toggle {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 50;
+  padding: 0.5rem 0.9rem;
+  border-radius: 9999px;
+  border: 1px solid var(--border-color);
+  background-color: var(--card-bg);
+  color: var(--text-color);
+  box-shadow: var(--shadow-soft);
+  font-size: 0.85rem;
+}
+
+.theme-toggle:hover {
+  border-color: var(--accent-color);
+}
+
+@keyframes skeleton-shimmer {
+  0% {
+    background-position: -200% 0;
   }
-  to {
-    transform: rotate(360deg);
+  100% {
+    background-position: 200% 0;
   }
 }
-
-

@@ -1,0 +1,167 @@
+.orders_container {
+  padding: 2rem 1.5rem;
+  max-width: 1000px;
+  margin: 0 auto;
+  min-height: 60vh;
+}
+
+.orders_title {
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+.orders_empty {
+  text-align: center;
+  color: rgba(0, 0, 0, 0.45);
+  margin-top: 2rem;
+}
+
+.orders_list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.order_card {
+  padding: 1rem;
+  border: 1px solid #d9d9d9;
+  border-radius: 0.5rem;
+}
+
+.order_card_header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.order_id {
+  color: #679830;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.order_id:hover {
+  text-decoration: underline;
+}
+
+.order_date {
+  color: rgba(0, 0, 0, 0.45);
+}
+
+.order_status {
+  padding: 0.25rem 0.75rem;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.order_status_pending {
+  background-color: #fff7e6;
+  color: #faad14;
+}
+
+.order_status_completed {
+  background-color: #f6ffed;
+  color: #52c41a;
+}
+
+.order_view_button {
+  background-color: #679830;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  transition: background-color 0.3s;
+}
+
+.order_view_button:hover {
+  background-color: #5a8228;
+}
+
+.orders_table {
+  width: 100%;
+  border-collapse: collapse;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.table_header {
+  background-color: #f5f5f5;
+}
+
+.table_header_cell {
+  padding: 1rem;
+  text-align: left;
+  font-weight: 600;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.table_row {
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.table_row:hover {
+  background-color: #fafafa;
+}
+
+.table_cell {
+  padding: 1rem;
+}
+
+.status_badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 0.25rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.status_pending {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.status_delivered {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.status_cancelled {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.view_button {
+  background-color: #679830;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.view_button:hover {
+  background-color: #5a8228;
+}
+
+.empty_orders {
+  text-align: center;
+  padding: 3rem;
+  color: #6b7280;
+}
+
+@media (max-width: 768px) {
+  .orders_table {
+    font-size: 0.9rem;
+  }
+
+  .table_header_cell,
+  .table_cell {
+    padding: 0.75rem 0.5rem;
+  }
+}
