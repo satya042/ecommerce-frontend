@@ -31,6 +31,8 @@ const Navbar = () => {
               <Link to="/">About</Link>
               <Link to="/">Contact</Link>
 
+              <span className={styles.price}>£35.00</span>
+              
               {/* Cart button with badge */}
               <button
                 type="button"
@@ -46,7 +48,6 @@ const Navbar = () => {
                 )}
               </button>
 
-              <span className={styles.price}>£35.00</span>
 
               <button
                 type="button"

@@ -37,7 +37,8 @@ export const ToastProvider = ({ children }) => {
             style={{
               padding: "0.5rem 0.75rem",
               minWidth: "200px",
-              borderRadius: "0.5rem",
+              height: "2.5rem",
+              // borderRadius: "0.5rem",
               backgroundColor:
                 t.type === "success"
                   ? "#16a34a"

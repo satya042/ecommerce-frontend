@@ -1,9 +1,8 @@
 import "./App.css";
 import React, { Suspense, lazy } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import Home from "./pages/Client/Home";
 import Products from "./pages/Client/Products";
-const ProductDetails = lazy(() => import("./pages/Client/ProductDetails"));
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import { AuthProvider } from "./context/AuthContext";
@@ -17,15 +16,18 @@ import Register from "./pages/Auth/Register";
 import ForgotPassword from "./pages/Auth/ForgotPassword";
 import Cart from "./pages/Cart/Cart";
 import Wishlist from "./pages/Cart/Wishlist";
+
+import AdminDashboard from "./pages/Admin/AdminDashboard";
+import ManageOrders from "./pages/Admin/ManageOrders";
+import ManageProducts from "./pages/Admin/ManageProducts";
+import ManageUsers from "./pages/Admin/ManageUsers";
+
+const ProductDetails = lazy(() => import("./pages/Client/ProductDetails"));
 const Checkout = lazy(() => import("./pages/Checkout/Checkout"));
 const Profile = lazy(() => import("./pages/Profile/Profile"));
 const Orders = lazy(() => import("./pages/Profile/Orders"));
 const OrderDetails = lazy(() => import("./pages/Profile/OrderDetails"));
 const NotFound = lazy(() => import("./pages/NotFound"));
-import AdminDashboard from "./pages/Admin/AdminDashboard";
-import ManageOrders from "./pages/Admin/ManageOrders";
-import ManageProducts from "./pages/Admin/ManageProducts";
-import ManageUsers from "./pages/Admin/ManageUsers";
 
 const ThemeToggle = () => {
   const { mode, toggleTheme } = useTheme();
@@ -37,14 +39,16 @@ const ThemeToggle = () => {
 };
 
 function AppInner() {
+  const location = useLocation();
+  const isAdminRoute = location.pathname.startsWith("/admin/app/ecommerce");
+
   return (
     <div className="app">
-      <Navbar />
+      {!isAdminRoute && <Navbar />}
       <main className="app-main">
         <Suspense fallback={<div style={{ padding: "2rem" }}>Loading...</div>}>
-          {/* Client routes temporarily commented to preview admin UI */}
-          
           <Routes>
+            {/* Client Routes */}
             <Route path="/" element={<Home />} />
             <Route path="/products" element={<Products />} />
             <Route path="/products/:id" element={<ProductDetails />} />
@@ -62,20 +66,20 @@ function AppInner() {
             <Route path="/orders" element={<Orders />} />
             <Route path="/orders/:id" element={<OrderDetails />} />
 
+            {/* Admin Routes - Backend API base: http://localhost:8080/admin/app/ecommerce */}
+            <Route path="/admin/app/ecommerce" element={<AdminDashboard />} />
+            <Route path="/admin/app/ecommerce/dashboard" element={<AdminDashboard />} />
+            <Route path="/admin/app/ecommerce/add-products" element={<ManageProducts />} />
+            <Route path="/admin/app/ecommerce/manage-products" element={<ManageProducts />} />
+            <Route path="/admin/app/ecommerce/manage-orders" element={<ManageOrders />} />
+            <Route path="/admin/app/ecommerce/manage-users" element={<ManageUsers />} />
+
+            {/* Fallback */}
             <Route path="*" element={<NotFound />} />
           </Routes>
-          
-          {/* <Routes>
-            <Route path="/" element={<AdminDashboard />} />
-            <Route path="/admin" element={<AdminDashboard />} />
-            <Route path="/admin/products" element={<ManageProducts />} />
-            <Route path="/admin/orders" element={<ManageOrders />} />
-            <Route path="/admin/users" element={<ManageUsers />} />
-            <Route path="*" element={<AdminDashboard />} />
-          </Routes> */}
         </Suspense>
       </main>
-      <Footer />
+      {!isAdminRoute && <Footer />}
       {/* <ThemeToggle /> */}
     </div>
   );

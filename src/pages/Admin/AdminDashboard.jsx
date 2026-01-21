@@ -1,55 +1,50 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useTheme } from '../../context/ThemeContext';
+import AdminSidebar from './components/AdminSidebar';
+import AdminHeader from './components/AdminHeader';
+import AddProductPage from './components/AddProductPage';
 import styles from './styles/AdminDashboard.module.css';
 
 const AdminDashboard = () => {
+  const { mode: isDarkMode, toggleTheme } = useTheme();
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  // Apply theme to document
+  useEffect(() => {
+    if (isDarkMode === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    } else {
+      document.documentElement.removeAttribute('data-theme');
+    }
+  }, [isDarkMode]);
+
+  const handleThemeToggle = () => {
+    toggleTheme();
+  };
+
   return (
-    <div className={styles.dashboard_container}>
-      <aside className={styles.sidebar}>
-        <div className={styles.profile}>
-          <img src="profile-pic-url" alt="Profile" className={styles.profile_pic} />
-          <p>admin123</p>
-          <a href="#logout" className={styles.logout}>Logout</a>
+    <div className={styles.admin_layout}>
+      {/* Sidebar */}
+      <AdminSidebar isDarkMode={isDarkMode === 'dark'} onThemeToggle={handleThemeToggle} />
+
+      {/* Main Content */}
+      <div className={styles.main_wrapper}>
+        {/* Header */}
+        <AdminHeader title="Add New Product" />
+
+        {/* Content Area */}
+        <div className={styles.content_area}>
+          <AddProductPage />
         </div>
-        <nav className={styles.nav}>
-          <h2>E-Commerce</h2>
-          <ul>
-            <li><a href="#dashboard">Dashboard</a></li>
-            <li><a href="#orders">Orders</a></li>
-            <li><a href="#products">Products</a></li>
-            <li><a href="#users">Users</a></li>
-            <li><a href="#sales">Sales</a></li>
-          </ul>
-        </nav>
-      </aside>
-      <main className={styles.main_content}>
-        <header className={styles.header}>
-          <div className={styles.login_status}>Login Successful...</div>
-          <h1>Dashboard</h1>
-        </header>
-        <div className={styles.info_cards}>
-          <div className={`${styles.card} ${styles.orders}`}>
-            <h2>3</h2>
-            <p>Total Orders</p>
-            <a href="#more-info" className="more-info">More info ➔</a>
-          </div>
-          <div className={`${styles.card} ${styles.products}`}>
-            <h2>3</h2>
-            <p>Total Products</p>
-            <a href="#more-info" className="more-info">More info ➔</a>
-          </div>
-          <div className={`${styles.card} ${styles.users}`}>
-            <h2>3</h2>
-            <p>Total Users</p>
-            <a href="#more-info" className="more-info">More info ➔</a>
-          </div>
-          <div className={`${styles.card} ${styles.sales_ratio}`}>
-            <h2>66.67%</h2>
-            <p>Sales Ratio</p>
-            <a href="#more-info" className="more-info">More info ➔</a>
-          </div>
-        </div>
-      </main>
+      </div>
+
+      {/* Mobile Sidebar Overlay */}
+      {isSidebarOpen && (
+        <div
+          className={styles.sidebar_overlay}
+          onClick={() => setIsSidebarOpen(false)}
+        />
+      )}
     </div>
   );
 };

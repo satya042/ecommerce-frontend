@@ -17,6 +17,17 @@ const Checkout = () => {
   const [placingOrder, setPlacingOrder] = useState(false);
   const [orderId, setOrderId] = useState(null);
 
+    const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    address: "",
+    city: "",
+    postalCode: "",
+    country: "",
+  });
+  
   const estimatedDelivery = useMemo(() => {
     const d = new Date();
     d.setDate(d.getDate() + 3);
@@ -60,16 +71,7 @@ const Checkout = () => {
     );
   }
 
-  const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    phone: "",
-    address: "",
-    city: "",
-    postalCode: "",
-    country: "",
-  });
+
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
