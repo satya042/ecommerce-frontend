@@ -1,0 +1,215 @@
+/* Hero Slide 2 - Fresh Smoothie & Summer Juice */
+
+.slide_section {
+  width: 100%;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #e8f4fd;
+  padding: 3rem 2rem;
+  box-sizing: border-box;
+}
+
+.slide_container {
+  width: 100%;
+  max-width: 1400px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  background: #e8f4fd;
+  /* border-radius: 24px;
+  padding: 4rem 5rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08); */
+  box-sizing: border-box;
+}
+
+/* Left Content Section */
+.slide_content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  justify-content: center;
+ padding-left: 10rem;
+}
+
+.label {
+  font-size: 1rem;
+  font-weight: 300;
+  color: #f4a261;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-family: 'Georgia', 'Times New Roman', serif;
+  width: fit-content;
+}
+
+.main_heading {
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  line-height: 1.2;
+  margin: 0;
+  letter-spacing: -1px;
+  font-family: 'Poppins', 'Inter', sans-serif;
+}
+
+.description {
+  font-size: 1.1rem;
+  color: #666;
+  line-height: 1.7;
+  margin: 0.5rem 0 0 0;
+  max-width: 500px;
+  font-weight: 400;
+}
+
+.cta_button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.9rem 2.2rem;
+  margin-top: 1rem;
+  border: 2px solid #1a1a1a;
+  background-color: transparent;
+  color: #1a1a1a;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  width: fit-content;
+  cursor: pointer;
+}
+
+.cta_button:hover {
+  background-color: #1a1a1a;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(26, 26, 26, 0.2);
+}
+
+/* Right Image Section */
+.image_section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.image_wrapper {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1000px;
+}
+
+.product_image {
+  width: 80%;
+  height: 100%;
+  object-fit: contain;
+  transform: rotate(-6deg) translateY(-20px);
+  filter: drop-shadow(0 20px 40px rgba(76, 175, 80, 0.25));
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: floatImage 3s ease-in-out infinite;
+}
+
+@keyframes floatImage {
+  0%, 100% {
+    transform: rotate(-6deg) translateY(-20px);
+  }
+  50% {
+    transform: rotate(-6deg) translateY(-30px);
+  }
+}
+
+.image_wrapper:hover .product_image {
+  transform: rotate(-4deg) translateY(-25px) scale(1.05);
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .slide_container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 3rem;
+  }
+
+  .main_heading {
+    font-size: 2.8rem;
+  }
+
+  .description {
+    font-size: 1rem;
+  }
+
+  .image_wrapper {
+    height: 400px;
+  }
+}
+
+@media (max-width: 768px) {
+  .slide_section {
+    padding: 2rem 1rem;
+  }
+
+  .slide_container {
+    grid-template-columns: 1fr;
+    padding: 2rem;
+    border-radius: 16px;
+    gap: 1.5rem;
+  }
+
+  .main_heading {
+    font-size: 2rem;
+  }
+
+  .description {
+    font-size: 0.95rem;
+    max-width: 100%;
+  }
+
+  .image_wrapper {
+    height: 300px;
+  }
+
+  .product_image {
+    width: 90%;
+  }
+}
+
+@media (max-width: 480px) {
+  .slide_section {
+    min-height: auto;
+    padding: 2rem 1rem;
+  }
+
+  .slide_container {
+    padding: 1.5rem;
+    gap: 1rem;
+  }
+
+  .main_heading {
+    font-size: 1.8rem;
+  }
+
+  .label {
+    font-size: 0.85rem;
+  }
+
+  .description {
+    font-size: 0.9rem;
+  }
+
+  .cta_button {
+    padding: 0.8rem 1.8rem;
+    font-size: 0.95rem;
+  }
+
+  .image_wrapper {
+    height: 250px;
+  }
+}
