@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styles from "./styles/ManageProducts.module.css";
 import ProductForm from "./ProductForm";
 import { api } from "../../services/apiConfig";
-import { FiEdit2, FiTrash2, FiPlus, FiSearch } from "react-icons/fi";
+import { FiEdit2, FiTrash2, FiSearch } from "react-icons/fi";
 
 const ManageProducts = ({ isCollapsed = false }) => {
   const [products, setProducts] = useState([]);

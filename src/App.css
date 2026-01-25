@@ -7,6 +7,8 @@
   --accent-color-soft: #82bb42;
   --muted-text: #6b7280;
   --shadow-soft: 0 10px 15px rgba(0, 0, 0, 0.05);
+  --font-primary: 'Inter', 'Poppins', system-ui, sans-serif;
+  --font-heading: 'Poppins', 'Inter', system-ui, sans-serif;
 }
 
 [data-theme="dark"] {
@@ -23,6 +25,41 @@
 body {
   background-color: var(--bg-color);
   color: var(--text-color);
+  font-family: var(--font-primary);
+  font-size: 15px;
+  line-height: 1.6;
+  letter-spacing: 0.3px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: 2.5rem;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+h4 {
+  font-size: 1.25rem;
+}
+
+h5 {
+  font-size: 1.1rem;
+}
+
+h6 {
+  font-size: 1rem;
 }
 
 .app {
@@ -31,6 +68,7 @@ body {
   color: var(--text-color);
   display: flex;
   flex-direction: column;
+  font-family: var(--font-primary);
 }
 
 .app-main {
@@ -49,6 +87,7 @@ body {
   color: var(--text-color);
   box-shadow: var(--shadow-soft);
   font-size: 0.85rem;
+  font-family: var(--font-primary);
 }
 
 .theme-toggle:hover {

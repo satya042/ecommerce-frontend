@@ -124,7 +124,7 @@ const Products = () => {
             <HiOutlineChevronRight />
           </button>
         </div>
-        {showSuggestions && (suggestions.length > 0 || history.length > 0) && (
+        {showSuggestions && query.length > 0 && (suggestions.length > 0 || history.length > 0) && (
           <div className={styles.search_suggestions}>
             {suggestions.map((p) => (
               <button
@@ -139,7 +139,7 @@ const Products = () => {
                 {p.title}
               </button>
             ))}
-            {history.length > 0 && (
+            {suggestions.length === 0 && history.length > 0 && (
               <div className={styles.search_history}>
                 <div className={styles.search_history_label}>Recent searches</div>
                 {history.map((term) => (
@@ -160,8 +160,8 @@ const Products = () => {
           </div>
         )}
 
-        <div style={{ marginTop: "1.5rem" }}>
-          <div style={{ marginBottom: "0.5rem", fontWeight: 600 }}>Price</div>
+        <div className={styles.price_filter}>
+          <div className={styles.filter_title}>Filter by price</div>
           <Slider
             value={priceRange}
             onChange={(_, newValue) => setPriceRange(newValue)}
@@ -169,20 +169,36 @@ const Products = () => {
             min={0}
             max={40}
           />
+          <div className={styles.price_inputs}>
+            <div className={styles.price_input_group}>
+              <div className={styles.price_input_wrapper}>
+                <span>£</span>
+                <input type="number" value={priceRange[0]} readOnly />
+              </div>
+              <div className={styles.price_input_label}>Min. Price</div>
+            </div>
+            <div className={styles.price_input_group}>
+              <div className={styles.price_input_wrapper}>
+                <span>£</span>
+                <input type="number" value={priceRange[1]} readOnly />
+              </div>
+              <div className={styles.price_input_label}>Max. Price</div>
+            </div>
+          </div>
         </div>
 
-        <div style={{ marginTop: "1.5rem" }}>
-          <div style={{ marginBottom: "0.5rem", fontWeight: 600 }}>Category</div>
-          <div style={{ display: "flex", flexDirection: "column", gap: "0.35rem" }}>
+        <div className={styles.category_filter}>
+          <div className={styles.filter_title}>Category</div>
+          <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
             {categories.map((cat) => (
-              <label key={cat} style={{ cursor: "pointer", fontSize: "0.9rem" }}>
+              <label key={cat} style={{ cursor: "pointer", fontSize: "0.9rem", fontWeight: 500 }}>
                 <input
                   type="radio"
                   name="category"
                   value={cat}
                   checked={category === cat}
                   onChange={() => setCategory(cat)}
-                  style={{ marginRight: "0.35rem" }}
+                  style={{ marginRight: "0.5rem" }}
                 />
                 {cat === "all" ? "All" : cat}
               </label>
@@ -190,16 +206,11 @@ const Products = () => {
           </div>
         </div>
 
-        <div style={{ marginTop: "1.5rem" }}>
-          <div style={{ marginBottom: "0.5rem", fontWeight: 600 }}>Sort by</div>
+        <div className={styles.sort_filter}>
+          <div className={styles.filter_title}>Sort by</div>
           <select
             value={sort}
             onChange={(e) => setSort(e.target.value)}
-            style={{
-              padding: "0.35rem 0.5rem",
-              borderRadius: "0.375rem",
-              border: "1px solid #e5e7eb",
-            }}
           >
             <option value="latest">Latest</option>
             <option value="price-asc">Price: Low to High</option>
@@ -209,7 +220,7 @@ const Products = () => {
         </div>
       </div>
 
-      <div className={styles.products_main}>
+      <div className={styles.products_right}>
         <div>
           <div className={styles.products__titl}>Everything</div>
           <div className={styles.products_grid}>

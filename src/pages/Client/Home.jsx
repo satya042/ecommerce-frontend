@@ -40,7 +40,9 @@ const Home = () => {
 
       {/* Best Selling Products */}
       <div className={styles.bestSellingProducts}>
-        <div className={styles.bestSellingProductsTitle}>Best Selling Products</div>
+        <div className={styles.bestSellingProductsTitle}>Best Selling Products
+          <img src={homeLeaf} alt="Organic products"/>
+        </div>
         <div className={styles.products}>
           {bestSellingproducts.map((product) => (
             <ProductCard key={product.title} {...product} />

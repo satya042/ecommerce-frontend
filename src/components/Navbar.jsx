@@ -17,9 +17,9 @@ const Navbar = () => {
         <nav aria-label="Top" className={styles.custom_nav}>
           <div className={styles.nav_items}>
             <div className={styles.nav_left}>
-              <div className={styles.navbar__logo}>
+              <Link to="/" className={styles.navbar__logo}>
                 <img src={logo} alt="Company Logo"></img>
-              </div>
+              </Link>
               <div className={styles.nav_links}>
                 <Link to="/">Everything</Link>
                 <Link to="/">Groceries</Link>
