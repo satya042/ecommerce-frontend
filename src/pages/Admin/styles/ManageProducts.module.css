@@ -6,6 +6,12 @@
   background-color: var(--bg-color);
   color: var(--text-color);
   min-height: calc(100vh - 200px);
+  margin-left: 250px;
+  transition: margin-left 0.3s ease;
+}
+
+.container.collapsed {
+  margin-left: 100px;
 }
 
 .header {

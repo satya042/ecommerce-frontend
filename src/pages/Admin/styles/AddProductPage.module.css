@@ -1,10 +1,15 @@
 /* AddProductPage Styles */
 
 .page_container {
-  margin-left: 280px;
+  margin-left: 250px;
   padding: 32px;
   background-color: #f7f8fa;
   min-height: calc(100vh - 80px);
+  transition: margin-left 0.3s ease;
+}
+
+.page_container.collapsed {
+  margin-left: 100px;
 }
 
 [data-theme="dark"] .page_container {
@@ -41,6 +46,33 @@
 .action_buttons {
   display: flex;
   gap: 12px;
+}
+
+.addBtn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background-color: var(--accent-color);
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.addBtn:hover:not(:disabled) {
+  background-color: var(--accent-color-soft);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.addBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 .btn_secondary,

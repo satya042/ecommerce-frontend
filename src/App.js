@@ -18,10 +18,6 @@ import Cart from "./pages/Cart/Cart";
 import Wishlist from "./pages/Cart/Wishlist";
 
 import AdminDashboard from "./pages/Admin/AdminDashboard";
-import ManageOrders from "./pages/Admin/ManageOrders";
-import ManageProducts from "./pages/Admin/ManageProducts";
-import ManageUsers from "./pages/Admin/ManageUsers";
-
 const ProductDetails = lazy(() => import("./pages/Client/ProductDetails"));
 const Checkout = lazy(() => import("./pages/Checkout/Checkout"));
 const Profile = lazy(() => import("./pages/Profile/Profile"));
@@ -69,10 +65,16 @@ function AppInner() {
             {/* Admin Routes - Backend API base: http://localhost:8080/admin/app/ecommerce */}
             <Route path="/admin/app/ecommerce" element={<AdminDashboard />} />
             <Route path="/admin/app/ecommerce/dashboard" element={<AdminDashboard />} />
-            <Route path="/admin/app/ecommerce/add-products" element={<ManageProducts />} />
+            {/* <Route path="/admin/app/ecommerce/add-products" element={<AddProductPage />} />
+            <Route path="/admin/app/ecommerce/products-list" element={<ManageProducts />} />
             <Route path="/admin/app/ecommerce/manage-products" element={<ManageProducts />} />
             <Route path="/admin/app/ecommerce/manage-orders" element={<ManageOrders />} />
-            <Route path="/admin/app/ecommerce/manage-users" element={<ManageUsers />} />
+            <Route path="/admin/app/ecommerce/manage-users" element={<ManageUsers />} /> */}
+            <Route path="/admin/app/ecommerce/add-products" element={<AdminDashboard />} />
+            <Route path="/admin/app/ecommerce/products-list" element={<AdminDashboard />} />
+            <Route path="/admin/app/ecommerce/manage-products" element={<AdminDashboard />} />
+            <Route path="/admin/app/ecommerce/manage-orders" element={<AdminDashboard />} />
+            <Route path="/admin/app/ecommerce/manage-users" element={<AdminDashboard />} />
 
             {/* Fallback */}
             <Route path="*" element={<NotFound />} />

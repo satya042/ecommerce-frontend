@@ -4,7 +4,7 @@ import ProductForm from "./ProductForm";
 import { api } from "../../services/apiConfig";
 import { FiEdit2, FiTrash2, FiPlus, FiSearch } from "react-icons/fi";
 
-const ManageProducts = () => {
+const ManageProducts = ({ isCollapsed = false }) => {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -26,6 +26,8 @@ const ManageProducts = () => {
       salePrice: "",
       stock: 20,
       description: "Rich and aromatic coffee beans",
+      specifications: [],
+      image: "",
     },
     {
       id: "2",
@@ -33,8 +35,11 @@ const ManageProducts = () => {
       brand: "Nature Spread",
       category: "Groceries",
       price: "£25.00",
+      salePrice: "",
       stock: 15,
       description: "Creamy cashew butter with no added sugar",
+      specifications: [],
+      image: "",
     },
     {
       id: "3",
@@ -42,8 +47,11 @@ const ManageProducts = () => {
       brand: "Pure Gold",
       category: "Groceries",
       price: "£15.00",
+      salePrice: "",
       stock: 30,
       description: "Pure organic honey from local farms",
+      specifications: [],
+      image: "",
     },
   ];
 
@@ -179,16 +187,9 @@ const ManageProducts = () => {
   const categories = ["All", "Groceries", "Electronics", "Fashion", "Home", "Beauty"];
 
   return (
-    <div className={styles.container}>
+    <div className={`${styles.container} ${isCollapsed ? styles.collapsed : ''}`}>
       <div className={styles.header}>
         <h1>Manage Products</h1>
-        <button
-          className={styles.addBtn}
-          onClick={() => setShowForm(true)}
-          disabled={loading}
-        >
-          <FiPlus size={20} /> Add Product
-        </button>
       </div>
 
       {error && <div className={styles.alert + " " + styles.error}>{error}</div>}

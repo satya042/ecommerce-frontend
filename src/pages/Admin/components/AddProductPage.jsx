@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import styles from '../styles/AddProductPage.module.css';
 import { FiPlus, FiTrash2 } from 'react-icons/fi';
 
-const AddProductPage = () => {
+const AddProductPage = ({ isCollapsed = false }) => {
   const [formData, setFormData] = useState({
     name: 'Puffer Jacket With Pocket Detail',
+    brand: 'Premium Wear',
     description: 'Premium quality puffer jacket with multiple pockets and modern design',
     basePricing: '299',
     stock: '45',
@@ -58,7 +59,7 @@ const AddProductPage = () => {
   };
 
   return (
-    <div className={styles.page_container}>
+    <div className={`${styles.page_container} ${isCollapsed ? styles.collapsed : ''}`}>
       {/* Header Section */}
       <div className={styles.page_header}>
         <h1 className={styles.page_title}>Add New Product</h1>
@@ -70,9 +71,10 @@ const AddProductPage = () => {
             Save Draft
           </button>
           <button
-            className={styles.btn_primary}
+            className={styles.addBtn}
             onClick={handleAddProduct}
           >
+            <FiPlus size={20} />
             Add Product
           </button>
         </div>
@@ -86,16 +88,30 @@ const AddProductPage = () => {
           <div className={styles.card}>
             <h2 className={styles.card_title}>General Information</h2>
 
-            <div className={styles.form_group}>
-              <label className={styles.label}>Name Product</label>
-              <input
-                type="text"
-                name="name"
-                value={formData.name}
-                onChange={handleInputChange}
-                placeholder="Enter product name"
-                className={styles.input}
-              />
+            <div className={styles.grid_2col}>
+              <div className={styles.form_group}>
+                <label className={styles.label}>Product Name</label>
+                <input
+                  type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleInputChange}
+                  placeholder="Enter product name"
+                  className={styles.input}
+                />
+              </div>
+
+              <div className={styles.form_group}>
+                <label className={styles.label}>Brand</label>
+                <input
+                  type="text"
+                  name="brand"
+                  value={formData.brand}
+                  onChange={handleInputChange}
+                  placeholder="Enter brand name"
+                  className={styles.input}
+                />
+              </div>
             </div>
 
             <div className={styles.form_group}>

@@ -11,9 +11,9 @@ const AdminHeader = ({ title = 'Overview' }) => {
     <header className={styles.header}>
       <div className={styles.header_content}>
         {/* Left Section - Title */}
-        <div className={styles.left_section}>
+        {/* <div className={styles.left_section}>
           <h1 className={styles.page_title}>{title}</h1>
-        </div>
+        </div> */}
 
         {/* Center Section - Search and Filters */}
         <div className={styles.center_section}>
@@ -26,7 +26,7 @@ const AdminHeader = ({ title = 'Overview' }) => {
               onChange={(e) => setSearchQuery(e.target.value)}
               className={styles.search_input}
             />
-            <span className={styles.search_shortcut}>⌘ K</span>
+            {/* <FiSearch size={18} className={styles.search_icon} /> */}
           </div>
 
           <div className={styles.filter_group}>

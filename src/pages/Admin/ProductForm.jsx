@@ -20,7 +20,17 @@ const ProductForm = ({ onSubmit, onClose, initialData = null, isLoading = false 
 
   useEffect(() => {
     if (initialData) {
-      setFormData(initialData);
+      setFormData({
+        title: initialData.title || "",
+        brand: initialData.brand || "",
+        category: initialData.category || "",
+        price: initialData.price || "",
+        salePrice: initialData.salePrice || "",
+        stock: initialData.stock || "",
+        description: initialData.description || "",
+        specifications: initialData.specifications || [],
+        image: initialData.image || "",
+      });
     }
   }, [initialData]);
 
