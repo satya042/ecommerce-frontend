@@ -1,6 +1,6 @@
 import React from 'react';
-import styles from "./styles/Footer.module.css";
-import logo from "../assets/logos/organic-store-white-logo.png";
+import styles from "./Footer.module.css";
+import logo from "../../../assets/logos/organic-store-white-logo.png";
 import { FaFacebookF, FaTwitter, FaGoogle, FaInstagram, FaLinkedin, FaGithub } from "react-icons/fa";
 import { MdHome, MdEmail, MdPhone, MdPrint } from "react-icons/md";
 
@@ -62,7 +62,7 @@ const Footer = () => {
       </section>
 
       <div className={styles.footer_bottom}>
-        <p className={styles.copyright}>© 2021 Copyright: <a href="https://organicstore.com/" className={styles.copyright_link}>OrganicStore.com</a></p>
+        <p className={styles.copyright}>© 2021 Copyright: <a href="https://organicstore.com/" className={styles.copyright_link}>Satyaprakash jena</a></p>
         <div className={styles.social_icons_bottom}>
            <a href="#/" className={styles.social_icon} aria-label="LinkedIn">
             <FaLinkedin />

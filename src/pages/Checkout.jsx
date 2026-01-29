@@ -1,8 +1,8 @@
-import React, { useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { Steps, Form, Input, Button, Radio } from "antd";
-import { useCart } from "../../context/CartContext";
-import { useAuth } from "../../context/AuthContext";
-import { useToast } from "../../context/ToastContext";
+import { useCart } from "../context/CartContext";
+import { useAuth } from "../context/AuthContext";
+import { useToast } from "../context/ToastContext";
 import styles from "./styles/Checkout.module.css";
 
 const { Step } = Steps;

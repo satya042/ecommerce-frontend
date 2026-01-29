@@ -98,6 +98,98 @@
   background-color: #f5f5f5;
 }
 
+/* Newly added styles from inline refactor */
+.page_wrapper {
+  padding: 2rem 1.5rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.header_row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.header_title {
+  font-size: 1.75rem;
+  margin-bottom: 0.25rem;
+}
+
+.header_subtitle {
+  color: #6b7280;
+  font-size: 0.9rem;
+}
+
+.header_logout_btn {
+  padding: 0.4rem 0.9rem;
+  border-radius: 9999px;
+  border: 1px solid #e5e7eb;
+  background-color: #fff;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.header_logout_btn:hover {
+  background-color: #f9f9f9;
+}
+
+.form_wrapper {
+  max-width: 480px;
+}
+
+.primary_btn {
+  background-color: #679830 !important;
+  border-color: #679830 !important;
+}
+
+.dashed_btn {
+  border-color: #679830 !important;
+  color: #679830 !important;
+}
+
+.section_instruction {
+  margin-bottom: 0.5rem;
+}
+
+.no_reviews {
+  font-size: 0.9rem;
+  color: #6b7280;
+}
+
+.reviews_list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.review_item {
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  padding: 0.5rem 0.75rem;
+}
+
+.review_header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.25rem;
+}
+
+.review_product_id {
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.review_stars {
+  font-size: 0.8rem;
+}
+
+.review_text {
+  font-size: 0.85rem;
+}
+
 @media (max-width: 768px) {
   .profile_content {
     grid-template-columns: 1fr;

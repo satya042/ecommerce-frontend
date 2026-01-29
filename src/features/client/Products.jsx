@@ -3,9 +3,9 @@ import styles from "./styles/Products.module.css";
 import { productsData } from "../../configs/ecommerce";
 import Slider from "@mui/material/Slider";
 import { HiOutlineChevronRight } from "react-icons/hi";
-import ProductCard from "../../features/client/ProductCard";
+import ProductCard from "./ProductCard";
 import { debounce } from "../../utils/debounce";
-import SkeletonProductCard from "../../features/client/SkeletonProductCard";
+import SkeletonProductCard from "./SkeletonProductCard";
 
 const SEARCH_STORAGE_KEY = "ecom_search_history";
 
@@ -189,16 +189,16 @@ const Products = () => {
 
         <div className={styles.category_filter}>
           <div className={styles.filter_title}>Category</div>
-          <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+          <div className={styles.category_group}>
             {categories.map((cat) => (
-              <label key={cat} style={{ cursor: "pointer", fontSize: "0.9rem", fontWeight: 500 }}>
+              <label key={cat} className={styles.category_label}>
                 <input
                   type="radio"
                   name="category"
                   value={cat}
                   checked={category === cat}
                   onChange={() => setCategory(cat)}
-                  style={{ marginRight: "0.5rem" }}
+                  className={styles.category_radio}
                 />
                 {cat === "all" ? "All" : cat}
               </label>
@@ -230,11 +230,11 @@ const Products = () => {
                   <SkeletonProductCard key={i} />
                 ))
               ) : filteredProducts.length === 0 ? (
-                <div style={{ textAlign: "center", width: "100%", padding: "3rem 1rem" }}>
-                  <p style={{ marginBottom: "0.5rem", fontWeight: 600 }}>
+                <div className={styles.no_results_container}>
+                  <p className={styles.no_results_title}>
                     No products match your filters.
                   </p>
-                  <p style={{ fontSize: "0.9rem" }}>
+                  <p className={styles.no_results_text}>
                     Try adjusting your search or price range.
                   </p>
                 </div>

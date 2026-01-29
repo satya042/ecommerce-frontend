@@ -1,9 +1,7 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { useWishlist } from "../../context/WishlistContext";
-import { useCart } from "../../context/CartContext";
-import { useToast } from "../../context/ToastContext";
+import { useWishlist } from "../context/WishlistContext";
+import { useCart } from "../context/CartContext";
+import { useToast } from "../context/ToastContext";
 import styles from "./styles/Wishlist.module.css";
 
 const Wishlist = () => {
@@ -20,32 +18,17 @@ const Wishlist = () => {
 
   if (!items.length) {
     return (
-      <div
-        style={{
-          minHeight: "60vh",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          padding: "2rem 1rem",
-        }}
-      >
-        <h2 style={{ fontSize: "1.5rem", marginBottom: "0.5rem" }}>
+      <div className={styles.empty_container}>
+        <h2 className={styles.empty_title}>
           Your wishlist is empty
         </h2>
-        <p style={{ marginBottom: "1rem", color: "#6b7280" }}>
+        <p className={styles.empty_text}>
           Save items you love and move them to cart anytime.
         </p>
         <button
           type="button"
           onClick={() => navigate("/products")}
-          style={{
-            padding: "0.5rem 1.5rem",
-            borderRadius: "9999px",
-            border: "none",
-            backgroundColor: "#679830",
-            color: "#fff",
-          }}
+          className={styles.empty_btn}
         >
           Browse products
         </button>
@@ -69,13 +52,7 @@ const Wishlist = () => {
             <div className={styles.wishlist_item_price}>
               {item.salePrice || item.price}
             </div>
-            <div
-              style={{
-                display: "flex",
-                gap: "0.5rem",
-                marginTop: "0.75rem",
-              }}
-            >
+            <div className={styles.item_actions}>
               <button
                 type="button"
                 onClick={() => moveToCart(item)}

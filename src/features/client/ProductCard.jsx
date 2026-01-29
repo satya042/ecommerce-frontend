@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./styles/ProductCard.module.css";
-import { useCart } from "../context/CartContext";
-import { useWishlist } from "../context/WishlistContext";
-import { useToast } from "../context/ToastContext";
+import { useCart } from "../../context/CartContext";
+import { useWishlist } from "../../context/WishlistContext";
+import { useToast } from "../../context/ToastContext";
 import { FiHeart } from "react-icons/fi";
 import { AiOutlineStar } from "react-icons/ai";
 

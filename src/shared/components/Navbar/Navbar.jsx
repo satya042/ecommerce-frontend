@@ -1,10 +1,10 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import styles from "./styles/Navbar.module.css";
-import logo from "../assets/logos/organic-store-logo5.svg";
+import styles from "./Navbar.module.css";
+import logo from "../../../assets/logos/organic-store-logo5.svg";
 import { HiOutlineShoppingCart , HiUser } from "react-icons/hi";
-import { useCart } from "../context/CartContext";
-import { useAuth } from "../context/AuthContext";
+import { useCart } from "../../../context/CartContext";
+import { useAuth } from "../../../context/AuthContext";
 
 const Navbar = () => {
   const { itemCount } = useCart();

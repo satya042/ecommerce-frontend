@@ -1,29 +1,29 @@
 import "./App.css";
 import React, { Suspense, lazy } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
-import Home from "./pages/Client/Home";
-import Products from "./pages/Client/Products";
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
+import Home from "./features/client/Home";
+import Products from "./features/client/Products";
+import Navbar from "./shared/components/Navbar/Navbar";
+import Footer from "./shared/components/Footer/Footer";
 import { AuthProvider } from "./context/AuthContext";
 import { CartProvider } from "./context/CartContext";
 import { WishlistProvider } from "./context/WishlistContext";
 import { ThemeProvider, useTheme } from "./context/ThemeContext";
 import { ToastProvider } from "./context/ToastContext";
 import { ReviewsProvider } from "./context/ReviewsContext";
-import Login from "./pages/Auth/Login";
-import Register from "./pages/Auth/Register";
-import ForgotPassword from "./pages/Auth/ForgotPassword";
-import Cart from "./pages/Cart/Cart";
-import Wishlist from "./pages/Cart/Wishlist";
+import Login from "./features/auth/Login";
+import Register from "./features/auth/Register";
+import ForgotPassword from "./features/auth/ForgotPassword";
+import Cart from "./pages/Cart";
+import Wishlist from "./pages/Wishlist";
 
-import AdminDashboard from "./pages/Admin/AdminDashboard";
-const ProductDetails = lazy(() => import("./pages/Client/ProductDetails"));
-const Checkout = lazy(() => import("./pages/Checkout/Checkout"));
-const Profile = lazy(() => import("./pages/Profile/Profile"));
-const Orders = lazy(() => import("./pages/Profile/Orders"));
-const OrderDetails = lazy(() => import("./pages/Profile/OrderDetails"));
-const NotFound = lazy(() => import("./pages/NotFound"));
+import AdminDashboard from "./features/admin/components/AdminDashboard";
+const ProductDetails = lazy(() => import("./features/client/ProductDetails"));
+const Checkout = lazy(() => import("./pages/Checkout"));
+const Profile = lazy(() => import("./pages/Profile"));
+const Orders = lazy(() => import("./pages/Orders"));
+const OrderDetails = lazy(() => import("./pages/OrderDetails"));
+const NotFound = lazy(() => import("./shared/NotFound"));
 
 const ThemeToggle = () => {
   const { mode, toggleTheme } = useTheme();

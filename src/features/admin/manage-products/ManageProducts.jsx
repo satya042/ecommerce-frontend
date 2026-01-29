@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import styles from "./styles/ManageProducts.module.css";
+import styles from "../styles/ManageProducts.module.css";
 import ProductForm from "./ProductForm";
-import { api } from "../../services/apiConfig";
+import { api } from "../../../services/apiConfig";
 import { FiEdit2, FiTrash2, FiSearch } from "react-icons/fi";
 
 const ManageProducts = ({ isCollapsed = false }) => {

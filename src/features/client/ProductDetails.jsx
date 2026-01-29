@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from "react";
 import styles from "./styles/ProductDetails.module.css";
 import { useParams } from "react-router-dom";
-import ProductCard from "../../features/client/ProductCard";
+import ProductCard from "./ProductCard";
 import { bestSellingproducts, productsData } from "../../configs/ecommerce";
 import { useCart } from "../../context/CartContext";
 import { useToast } from "../../context/ToastContext";

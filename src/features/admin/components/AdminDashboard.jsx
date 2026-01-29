@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { useTheme } from '../../context/ThemeContext';
-import { SidebarProvider, useSidebar } from '../../context/SidebarContext';
-import AdminSidebar from './components/AdminSidebar';
-import AdminHeader from './components/AdminHeader';
-import AddProductPage from './components/AddProductPage';
-import ManageProducts from './ManageProducts';
-import ManageOrders from './ManageOrders';
-import ManageUsers from './ManageUsers';
-import styles from './styles/AdminDashboard.module.css';
+import { useTheme } from '../../../context/ThemeContext';
+import { SidebarProvider, useSidebar } from '../../../context/SidebarContext';
+import AdminSidebar from './AdminSidebar';
+import AdminHeader from './AdminHeader';
+import AddProductPage from '../manage-products/AddProductPage';
+import ManageProducts from '../manage-products/ManageProducts';
+import ManageOrders from '../ManageOrders';
+import ManageUsers from '../ManageUsers';
+import styles from '../styles/AdminDashboard.module.css';
 
 const AdminDashboardInner = () => {
   const { mode: isDarkMode, toggleTheme } = useTheme();

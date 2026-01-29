@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useCart } from "../../context/CartContext";
+import { useCart } from "../context/CartContext";
 import styles from "./styles/Cart.module.css";
 
 const Cart = () => {
@@ -9,32 +9,17 @@ const Cart = () => {
 
   if (!items.length) {
     return (
-      <div
-        style={{
-          minHeight: "60vh",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          padding: "2rem 1rem",
-        }}
-      >
-        <h2 style={{ fontSize: "1.5rem", marginBottom: "0.5rem" }}>
+      <div className={styles.empty_container}>
+        <h2 className={styles.empty_title}>
           Your cart is empty
         </h2>
-        <p style={{ marginBottom: "1rem", color: "#6b7280" }}>
+        <p className={styles.empty_text}>
           Start adding some organic goodness to your basket.
         </p>
         <button
           type="button"
           onClick={() => navigate("/products")}
-          style={{
-            padding: "0.5rem 1.5rem",
-            borderRadius: "9999px",
-            border: "none",
-            backgroundColor: "#679830",
-            color: "#fff",
-          }}
+          className={styles.empty_btn}
         >
           Continue shopping
         </button>

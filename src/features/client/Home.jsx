@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./styles/Home.module.css";
-import ProductCard from "../../features/client/ProductCard";
-import FeatureCard from "../../features/client/FeatureCard";
+import ProductCard from "./ProductCard";
+import FeatureCard from "./FeatureCard";
 import HeroCarousel from "./components/HeroCarousel";
 import { heroSlides } from "./config/heroSlidesConfig";
 import { bestSellingproducts, features } from "../../configs/ecommerce";

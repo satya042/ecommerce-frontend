@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Tabs, Form, Input, Button } from "antd";
-import { useAuth } from "../../context/AuthContext";
-import { useReviews } from "../../context/ReviewsContext";
+import { useAuth } from "../context/AuthContext";
+import { useReviews } from "../context/ReviewsContext";
 import styles from "./styles/Profile.module.css";
 
 const Profile = () => {
@@ -17,7 +17,7 @@ const Profile = () => {
       children: (
         <Form
           layout="vertical"
-          style={{ maxWidth: 480 }}
+          className={styles.form_wrapper}
           initialValues={{
             name: user?.name,
             email: user?.email,
@@ -35,10 +35,7 @@ const Profile = () => {
           </Form.Item>
           <Button
             type="primary"
-            style={{
-              backgroundColor: "#679830",
-              borderColor: "#679830",
-            }}
+            className={styles.primary_btn}
           >
             Save changes
           </Button>
@@ -50,15 +47,12 @@ const Profile = () => {
       label: "Addresses",
       children: (
         <div>
-          <p style={{ marginBottom: "0.5rem" }}>
+          <p className={styles.section_instruction}>
             Manage your shipping addresses used during checkout.
           </p>
           <Button
             type="dashed"
-            style={{
-              borderColor: "#679830",
-              color: "#679830",
-            }}
+            className={styles.dashed_btn}
           >
             Add new address
           </Button>
@@ -70,47 +64,30 @@ const Profile = () => {
       label: "Reviews",
       children: (
         <div>
-          <p style={{ marginBottom: "0.5rem" }}>
+          <p className={styles.section_instruction}>
             Your submitted reviews appear here.
           </p>
           {userReviews.length === 0 ? (
-            <p style={{ fontSize: "0.9rem", color: "#6b7280" }}>
+            <p className={styles.no_reviews}>
               You have not reviewed any products yet.
             </p>
           ) : (
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                gap: "0.75rem",
-                marginTop: "0.5rem",
-              }}
-            >
+            <div className={styles.reviews_list}>
               {userReviews.map((rev) => (
                 <div
                   key={rev.id}
-                  style={{
-                    borderRadius: 8,
-                    border: "1px solid #e5e7eb",
-                    padding: "0.5rem 0.75rem",
-                  }}
+                  className={styles.review_item}
                 >
-                  <div
-                    style={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      marginBottom: "0.25rem",
-                    }}
-                  >
-                    <span style={{ fontSize: "0.85rem", fontWeight: 600 }}>
+                  <div className={styles.review_header}>
+                    <span className={styles.review_product_id}>
                       {rev.productId}
                     </span>
-                    <span style={{ fontSize: "0.8rem" }}>
+                    <span className={styles.review_stars}>
                       {"★".repeat(rev.rating)}
                       {"☆".repeat(5 - rev.rating)}
                     </span>
                   </div>
-                  <p style={{ fontSize: "0.85rem" }}>{rev.comment}</p>
+                  <p className={styles.review_text}>{rev.comment}</p>
                 </div>
               ))}
             </div>
@@ -128,20 +105,13 @@ const Profile = () => {
   };
 
   return (
-    <div style={{ padding: "2rem 1.5rem", maxWidth: 900, margin: "0 auto" }}>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          marginBottom: "1.5rem",
-        }}
-      >
+    <div className={styles.page_wrapper}>
+      <div className={styles.header_row}>
         <div>
-          <h1 style={{ fontSize: "1.75rem", marginBottom: "0.25rem" }}>
+          <h1 className={styles.header_title}>
             My account
           </h1>
-          <p style={{ color: "#6b7280", fontSize: "0.9rem" }}>
+          <p className={styles.header_subtitle}>
             {user ? `Signed in as ${user.email}` : "Guest"}
           </p>
         </div>
@@ -149,13 +119,7 @@ const Profile = () => {
           <button
             type="button"
             onClick={logout}
-            style={{
-              padding: "0.4rem 0.9rem",
-              borderRadius: "9999px",
-              border: "1px solid #e5e7eb",
-              backgroundColor: "#fff",
-              fontSize: "0.85rem",
-            }}
+            className={styles.header_logout_btn}
           >
             Logout
           </button>

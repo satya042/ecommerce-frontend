@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import styles from "./styles/ProductForm.module.css";
+import styles from "../styles/ProductForm.module.css";
 import { FiX } from "react-icons/fi";
 
 const ProductForm = ({ onSubmit, onClose, initialData = null, isLoading = false }) => {

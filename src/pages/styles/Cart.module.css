@@ -125,9 +125,37 @@
   background-color: #5a8228;
 }
 
-.empty_cart {
-  text-align: center;
-  padding: 2rem;
+.empty_container {
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+}
+
+.empty_title {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.empty_text {
+  margin-bottom: 1rem;
+  color: #6b7280;
+}
+
+.empty_btn {
+  padding: 0.5rem 1.5rem;
+  border-radius: 9999px;
+  border: none;
+  background-color: #679830;
+  color: #fff;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.empty_btn:hover {
+  background-color: #5a8228;
 }
 
 @media (max-width: 768px) {
