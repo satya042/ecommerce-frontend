@@ -3,6 +3,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { Form, Input, Button, Checkbox, Card, Typography } from "antd";
 import { useAuth } from "../../context/AuthContext";
 import { useToast } from "../../context/ToastContext";
+import { useMutation } from "@tanstack/react-query";
+import { authAPI } from "../../configs/apiClient";
+import { extractUserFromToken } from "../../utils/jwtUtils";
 import styles from "./styles/Login.module.css";
 
 const { Title, Text } = Typography;
@@ -11,23 +14,65 @@ const Login = () => {
   const { login } = useAuth();
   const { showToast } = useToast();
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(false);
 
-  const onFinish = async (values) => {
-    setLoading(true);
-    try {
-      await login({
-        email: values.email,
-        password: values.password,
-        remember: values.remember,
-      });
-      showToast("Logged in successfully", "success");
-      navigate("/");
-    } catch (err) {
-      showToast(err.message || "Login failed", "error");
-    } finally {
-      setLoading(false);
+  // Helper function to extract role
+  const extractRole = (user) => {
+    if (user?.role) {
+      return user.role.toLowerCase();
     }
+    return null;
+  };
+
+  const { mutate: loginUser, isPending } = useMutation({
+    mutationFn: authAPI.login,
+    onSuccess: (data) => {
+      console.log(data);
+      const accessToken = data.data.accessToken ;
+      const refreshToken = data.refreshToken;
+
+      if (!accessToken) {
+        showToast("No access token received", "error");
+        return;
+      }
+
+      // Store tokens
+      localStorage.setItem("authToken", accessToken);
+      if (refreshToken) {
+        localStorage.setItem("refreshToken", refreshToken);
+      }
+
+      // Extract user data from token
+      const extractedUser = extractUserFromToken(accessToken);
+
+      // Store auth state
+      const authData = {
+        user: extractedUser,
+        token: accessToken,
+      };
+      localStorage.setItem("ecom_auth", JSON.stringify(authData));
+
+      showToast("Logged in successfully", "success");
+
+      // Check if user is admin and redirect accordingly
+      const userRole = extractRole(extractedUser);
+      if (userRole === "admin") {
+        navigate("/admin/app/ecommerce/dashboard");
+      } else {
+        navigate("/");
+      }
+    },
+    onError: (err) => {
+      console.error("Login Error:", err);
+      showToast(err || "Login failed. Please try again.", "error");
+    },
+  });
+
+  const onFinish = (values) => {
+    loginUser({
+      username: values.email,
+      password: values.password,
+      remember: values.remember,
+    });
   };
 
   return (
@@ -75,11 +120,12 @@ const Login = () => {
             <Button
               type="primary"
               htmlType="submit"
-              loading={loading}
+              loading={isPending}
+              disabled={isPending}
               block
               className={styles.button}
             >
-              Sign in
+              {isPending ? "Signing in..." : "Sign in"}
             </Button>
           </Form.Item>
         </Form>

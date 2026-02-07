@@ -10,7 +10,7 @@
 // BASE URL CONFIGURATION
 // ============================================
 // Change this URL to update all API endpoints at once
-export const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || "http://localhost:8081";
+export const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || "http://localhost:8082";
 
 // ============================================
 // AUTH ENDPOINTS
@@ -127,7 +127,6 @@ export const authAPI = {
   register: async (signupRequest) => {
     return makeApiRequest(AUTH_ENDPOINTS.REGISTER, "POST", signupRequest);
   },
-
   /**
    * Login user
    * @param {object} loginRequest - { email, password }

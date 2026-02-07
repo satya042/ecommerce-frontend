@@ -16,6 +16,10 @@ import Register from "./features/auth/Register";
 import ForgotPassword from "./features/auth/ForgotPassword";
 import Cart from "./pages/Cart";
 import Wishlist from "./pages/Wishlist";
+import ContactUs from "./pages/ContactUs";
+import Coupons from "./pages/Coupons";
+import SavedCards from "./pages/SavedCards";
+import SavedAddresses from "./pages/SavedAddresses";
 
 import AdminDashboard from "./features/admin/components/AdminDashboard";
 const ProductDetails = lazy(() => import("./features/client/ProductDetails"));
@@ -55,6 +59,11 @@ function AppInner() {
 
             <Route path="/cart" element={<Cart />} />
             <Route path="/wishlist" element={<Wishlist />} />
+
+            <Route path="/contact" element={<ContactUs />} />
+            <Route path="/coupons" element={<Coupons />} />
+            <Route path="/saved-cards" element={<SavedCards />} />
+            <Route path="/saved-addresses" element={<SavedAddresses />} />
 
             <Route path="/checkout" element={<Checkout />} />
 

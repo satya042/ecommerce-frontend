@@ -2,9 +2,10 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./Navbar.module.css";
 import logo from "../../../assets/logos/organic-store-logo5.svg";
-import { HiOutlineShoppingCart , HiUser } from "react-icons/hi";
+import { HiOutlineShoppingCart } from "react-icons/hi";
 import { useCart } from "../../../context/CartContext";
 import { useAuth } from "../../../context/AuthContext";
+import ProfileDropdown from "./ProfileDropdown";
 
 const Navbar = () => {
   const { itemCount } = useCart();
@@ -48,15 +49,8 @@ const Navbar = () => {
                 )}
               </button>
 
-
-              <button
-                type="button"
-                className={styles.icon_button}
-                onClick={() => navigate(isAuthenticated ? "/profile" : "/login")}
-                aria-label="Account"
-              >
-                <HiUser className={styles.user_icon} />
-              </button>
+              {/* Profile Dropdown */}
+              <ProfileDropdown isAuthenticated={isAuthenticated} />
             </div>
           </div>
         </nav>

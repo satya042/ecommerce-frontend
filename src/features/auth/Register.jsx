@@ -2,21 +2,71 @@ import React, { useState, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Form, Input, Button, Card, Typography, Checkbox, Select, Upload, Avatar } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
-import { useAuth } from "../../context/AuthContext";
 import { useToast } from "../../context/ToastContext";
-import { authAPI } from "../../configs/apiConfig";
+import { useMutation } from "@tanstack/react-query";
+import { authAPI } from "../../configs/apiClient";
+import { extractUserFromToken } from "../../utils/jwtUtils";
 import styles from "./styles/Register.module.css";
 
 const { Title, Text } = Typography;
 const { Option } = Select;
 
 const Register = () => {
-  // const { register } = useAuth();
   const { showToast } = useToast();
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(false);
-  const [avatarPreview, setAvatarPreview] = useState(null);
   const formRef = useRef(null);
+  const [avatarPreview, setAvatarPreview] = useState(null);
+  
+  // Extract role from response (helper function)
+  const extractRole = (userData) => {
+    if (userData?.role) {
+      return userData.role.toLowerCase();
+    }
+    return null;
+  };
+
+  const { mutate: registerUser, isPending } = useMutation({
+    mutationFn: authAPI.register,
+    onSuccess: (data) => {
+      const accessToken = data.data.accessToken;
+      const refreshToken = data.refreshToken;
+
+      if (!accessToken) {
+        showToast("No access token received", "error");
+        return;
+      }
+
+      // Store tokens
+      localStorage.setItem("authToken", accessToken);
+      if (refreshToken) {
+        localStorage.setItem("refreshToken", refreshToken);
+      }
+
+      // Extract user data from token
+      const extractedUser = extractUserFromToken(accessToken);
+
+      // Store auth state
+      const authData = {
+        user: extractedUser,
+        token: accessToken,
+      };
+      localStorage.setItem("ecom_auth", JSON.stringify(authData));
+
+      showToast("Account created successfully", "success");
+
+      // Check if user is admin and redirect accordingly
+      const userRole = extractRole(extractedUser);
+      if (userRole === "admin") {
+        navigate("/admin/app/ecommerce/dashboard");
+      } else {
+        navigate("/");
+      }
+    },
+    onError: (err) => {
+      console.error("Registration Error:", err);
+      showToast(err || "Registration failed. Please try again.", "error");
+    },
+  });
 
   // Handle avatar upload
   const handleAvatarUpload = (file) => {
@@ -30,6 +80,9 @@ const Register = () => {
   };
 
   const onFinish = async (values) => {
+    // Prevent double submission
+    if (isPending) return;
+
     // Validate form
     if (!values.fullName?.trim()) {
       showToast("Full name is required", "error");
@@ -56,37 +109,16 @@ const Register = () => {
       return;
     }
 
-    setLoading(true);
-    try {
-      // Prepare signup request payload
-      const signupRequest = {
-        fullName: values.fullName.trim(),
-        email: values.email.trim(),
-        password: values.password,
-        gender: values.gender,
-        avatar: values.avatar || null, // Base64 or null
-        phone: values.phone.trim(),
-      };
+    const signupRequest = {
+      fullName: values.fullName.trim(),
+      username: values.email.trim(),
+      password: values.password,
+      gender: values.gender,
+      avatar: values.avatar || null, // Base64 or null
+      phone: values.phone.trim(),
+    };
 
-      // Call API endpoint
-      const response = await authAPI.register(signupRequest);
-
-      // Save token if provided
-      if (response.token) {
-        localStorage.setItem("authToken", response.token);
-      }
-      if (response.user) {
-        localStorage.setItem("user", JSON.stringify(response.user));
-      }
-
-      showToast("Account created successfully", "success");
-      navigate("/login");
-    } catch (err) {
-      console.error("Registration Error:", err);
-      showToast( "Registration failed. Please try again.", "error");
-    } finally {
-      setLoading(false);
-    }
+    registerUser(signupRequest);
   };
 
   return (
@@ -175,9 +207,9 @@ const Register = () => {
               className={styles.form_col}
             >
               <Select placeholder="Select your gender" size="large">
-                <Option value="male">Male</Option>
-                <Option value="female">Female</Option>
-                <Option value="other">Other</Option>
+                <Option value="MALE">Male</Option>
+                <Option value="FEMALE">Female</Option>
+                <Option value="OTHER">Other</Option>
               </Select>
             </Form.Item>
 
@@ -250,12 +282,13 @@ const Register = () => {
             <Button
               type="primary"
               htmlType="submit"
-              loading={loading}
+              loading={isPending}
+              disabled={isPending}
               block
               size="large"
               className={styles.button}
             >
-              {loading ? "Creating account..." : "Create account"}
+              {isPending ? "Creating account..." : "Create account"}
             </Button>
           </Form.Item>
         </Form>
